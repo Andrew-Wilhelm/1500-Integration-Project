@@ -1,135 +1,197 @@
-#Andrew Wilhelm
-#My Intergration Project
-#duck hunt THE GAME
-#dammage counter
-#combo counter
+"""Integration Project of the game Duck Hunt where you shoot birds to gain
+points """
+__author__ = "Andrew Wilhelm"
 
-import math
 import random
 
+
 def introduction():
-    intro_answer = input("Would you like to play a game? \nType yes or no? ")
+    """
+    This Function, introduction, introduces the game and what its all
+    """
+    intro_answer = input("Would you like to play a game? \nType yes or no? \n")
     if intro_answer == "yes":
-        print("Welcome to Duck Hunt")
-    else:
+        print("Welcome to Duck Hunt Where you hunt ducks")
+    elif intro_answer == "no":
         print("Welcome to Duck Hunt Any Way!")
-
-def duck_shooting():
-    duck = input("Do you want to shoot duck 1 2 3 or 4?")
-    score = 0
-    if duck == 1:
-        if chance_hit() == 1:
-            print("good job you got 500 points")
-            score += (500)
-        else:
-            print("Dang, you missed")
-    elif duck == 2:
-        if chance_hit() == 1:
-            print("good job you got 1000 points")
-            score += (1000)
-        else:
-            print("Dang, you missed")
-    elif duck == 3:
-        
-        if chance_hit() == 1:
-            print("good job you got 1000 points")
-            score += (5000)
-        else:
-            print("Dang, you missed")
-    elif duck == 4:
-        if chance_hit() == 1:
-            print("good job you got 1000 points")
-            score += (3000)
-        else:
-            print("Dang, you missed")
     else:
-        print("That is not a duck you silly Goose")
-    print("Score:"+("{:08d}".format(score)))
+        print("Incorrect input. Please answer by typing yes or no")
+        introduction()
 
-#Chance of hitting the duck
-#level_difficulty will lower as it gets harder
+
 def chance_hit():
-    rand_num = random.randint(1,14)
-    if rand_num >= level_difficulty():
+    """
+    This function adds the chance that you can hit or miss the duck
+    :return: It returns the value hit that has 1 has a hit and 0 as a miss
+    """
+    rand_num = random.randint(1, 14)
+    if rand_num >= random.randint(1, 5):
         hit = 1
     else:
         hit = 0
     return hit
 
-#sets the number of ducks to apear in a round and how strong they will be
-def number_of_ducks():
-    num_ducks = random.randint(1,30)
-def duck_power():
-    number_of_ducks() 
-    for index in range (1,num_ducks):
-        level_difficulty()
-        power_lvl = lvl_diff
 
-        
-def level_difficulty():
-    lvl_diff = random.randint(1,5)
-    return lvl_diff
+def dogs():
+    """
+    The function dogs is used to find out what kind of dog names do people
+    like to go hunting with
+    """
+    print("Please give 3 dogs you want to going hunting with names")
+    for x in range(3):
+        d = str(input())
+        x += 1
+        print("dog name:" + d)
+    print("What wonderful choices of dogs")
 
-def shop():
-    if score < item:
-        purchased = 0
+
+def play_again(s):
+    """
+    play_again gives the option to play the game again or not and gives you
+    your final score :param s:
+    """
+    again = input("Do you want to play again? \ntype yes or no \n")
+    if again == 'yes':
+        duck_shooting1()
+    elif again == 'no':
+        print("Your final score was:", s, " \nGoodbye, have a nice life")
     else:
-        purchased = 1
-    
+        print("Incorrect input. Please start from the beginning")
+        introduction()
+
+
 def start():
+    """
+    #start function runs all other function in order for the program to run
+    properly
+    """
     introduction()
-    
-    duck_shooting()
-    
-    
+    score = duck_shooting1()
+    dogs()
+    play_again(score)
+
+
+def duck_shooting1():
+    """
+    This function, duck_shooting1, prompts the user to pick a duck to shoot 3
+    times and uses the function chance_hit to determine it they were
+    successful in shooting the duck.
+    :return: It returns the score so that it may be used later to see the
+    final score
+    """
+    score = 0
+    duck = input("Do you want to shoot duck 1 2 3 or 4 \n")
+    if duck == '1':
+        if chance_hit() == 1:
+            print("good job you got 500 points")
+            score += 500
+            print("Score:" + ("{:08d}".format(score)))
+        else:
+            print("Dang, you missed")
+            print("Score:" + ("{:08d}".format(score)))
+    elif duck == '2':
+        if chance_hit() == 1:
+            print("good job you got 1000 points")
+            score += 1000
+            print("Score:" + ("{:08d}".format(score)))
+        else:
+            print("Dang, you missed")
+            print("Score:" + ("{:08d}".format(score)))
+    elif duck == '3':
+        if chance_hit() == 1:
+            print("good job you got 5000 points")
+            score += 5000
+            print("Score:" + ("{:08d}".format(score)))
+        else:
+            print("Dang, you missed")
+            print("Score:" + ("{:08d}".format(score)))
+    elif duck == '4':
+        if chance_hit() == 1:
+            print("good job you got 3000 points")
+            score += 3000
+            print("Score:" + ("{:08d}".format(score)))
+        else:
+            print("Dang, you missed")
+            print("Score:" + ("{:08d}".format(score)))
+    else:
+        print(
+            "That is not a duck you silly Goose. Now you have to start over!")
+        start()
+    duck = input("Do you want to shoot duck 1 2 3 or 4 \n")
+    if duck == '1':
+        if chance_hit() == 1:
+            print("good job you got 500 points")
+            score += 500
+            print("Score:" + ("{:08d}".format(score)))
+        else:
+            print("Dang, you missed")
+            print("Score:" + ("{:08d}".format(score)))
+    elif duck == '2':
+        if chance_hit() == 1:
+            print("good job you got 1000 points")
+            score += 1000
+            print("Score:" + ("{:08d}".format(score)))
+        else:
+            print("Dang, you missed")
+            print("Score:" + ("{:08d}".format(score)))
+    elif duck == '3':
+        if chance_hit() == 1:
+            print("good job you got 5000 points")
+            score += 5000
+            print("Score:" + ("{:08d}".format(score)))
+        else:
+            print("Dang, you missed")
+            print("Score:" + ("{:08d}".format(score)))
+    elif duck == '4':
+        if chance_hit() == 1:
+            print("good job you got 3000 points")
+            score += 3000
+            print("Score:" + ("{:08d}".format(score)))
+        else:
+            print("Dang, you missed")
+            print("Score:" + ("{:08d}".format(score)))
+    else:
+        print(
+            "That is not a duck you silly Goose. Now you have to start over!")
+        start()
+    duck = input("Do you want to shoot duck 1 2 3 or 4 \n")
+    if duck == '1':
+        if chance_hit() == 1:
+            print("good job you got 500 points")
+            score += 500
+            print("Score:" + ("{:08d}".format(score)))
+        else:
+            print("Dang, you missed")
+            print("Score:" + ("{:08d}".format(score)))
+    elif duck == '2':
+        if chance_hit() == 1:
+            print("good job you got 1000 points")
+            score += 1000
+            print("Score:" + ("{:08d}".format(score)))
+        else:
+            print("Dang, you missed")
+            print("Score:" + ("{:08d}".format(score)))
+    elif duck == '3':
+        if chance_hit() == 1:
+            print("good job you got 5000 points")
+            score += 5000
+            print("Score:" + ("{:08d}".format(score)))
+        else:
+            print("Dang, you missed")
+            print("Score:" + ("{:08d}".format(score)))
+    elif duck == '4':
+        if chance_hit() == 1:
+            print("good job you got 3000 points")
+            score += 3000
+            print("Score:" + ("{:08d}".format(score)))
+        else:
+            print("Dang, you missed")
+            print("Score:" + ("{:08d}".format(score)))
+    else:
+        print(
+            "That is not a duck you silly Goose. Now you have to start over!")
+        start()
+    return score
+
+
 start()
-
-#use of required numerical operators
-num = int(input("pick a number that you want to be put to the power of 7, divided by 6 and added to 750"))
-num = num ** 7 / 6 + 750
-print("result:",num)
-sqr_num = int(input("If you want just the whole number type 1 \nIf you want just the remainder then type 2"))
-if(sqr_num == 1):
-    print("Heres the Whole side:" ,num // 1)
-else:
-    print("Heres the remainder:", num % 1)
-
-#more needed things
-def get_quadratic(a,b):
-    s = a**2 + b**2
-    return s
-
-# needed while function?
-s = 0
-q = int(input("try and find a number that when squared and addde to 6 squared will return 40: "))
-while s != 40:
-    get_quadratic(q,6)
-
-#duck Points
-#duck1 = 500
-#duck2 = 1000
-#duck3 = 5000
-#duck4 = -3000
-
-#some kind of feature that if you hit ducks without missing you get a bonus
-#combo1 = score//50
-#combo = score + combo1
-#print(combo)
-
-#maybe a upgrade shop
-#print("Upgrade Shop")
-#item1 = 100
-#item2 = 500
-#item3 = 1000
-#item4 = 5000
-#item5 = 10000
-#if(score >= input)
-  #  print("Purchased"), score = (score - input))
-#print(item1 <= score)
-#print(item2 <= score)
-#print(item3 <= score)
-#print(item4 <= score)
-#print(item5 <= score)
-
-#print("Score:"+("{:08d}".format(score))) #so the score ends in the proper format
-
